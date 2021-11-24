@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     #apps
     'authentication',
     'api',
+    'auto_scraping',
+
 ]
 
 MIDDLEWARE = [
