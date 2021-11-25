@@ -61,7 +61,7 @@ mini banco utilizado para guardar as atividades em fila de execução
 
 
 #COMO UTLIZAR VIA POSTMAN
-Vovê deve suar o seguinte link para criar conta de usuário
+Vovê deve suar o seguinte link para criar conta de usuário com método POST
 http://127.0.0.1:8000/auth/register/
 {
   "email": "email@email.com",
@@ -69,5 +69,36 @@ http://127.0.0.1:8000/auth/register/
   "password": "string"
 }
 
+ATENÇÃO, VOCÊ RECEBERÁ UM EMAIL COM UM LINK PARA CONFIRMAÇÃO DO CASATRO, LEMBRE-SE DE USAR UM EMAIL VÁLIDO PARA ATIVAR O CADASTRO!
 
+você deve usar o seguinte link para login com método POST
 http://127.0.0.1:8000/auth/login/
+{
+  "email": "email@email.com",
+  "username": "Fulano da Silva"
+}
+
+Agora você receberá confirmação de login de 02 tokens, 1 de refresh e outro de access
+COPIE O TOKEN DE ACCESS
+
+Na guia Authorization, você deve escolher type: Bearer Token e colar o link que você copiou
+
+Pronto!!
+
+Agora só utlizar as rotas com Método GET para obter as informações desejadas.
+
+http://127.0.0.1:8000/api/total/2021
+pode pode altenar o ano de interesse
+
+http://127.0.0.1:8000/api/products
+http://127.0.0.1:8000/api/products/01019000
+Possíver ver receber json com todos produtos cadastrados ou basta digitar o código NCM no final para receber dados de produtos específicos
+
+http://127.0.0.1:8000/api/comex/exp/01019000/07/2021
+agora é possível filtrar por várias variáveis, por "exp" e "imp", por código NCM, por código da Via e algum dos 3 úlimos anos.
+
+
+
+MELHORIAS
+São várias melhorias possíveis!
+
