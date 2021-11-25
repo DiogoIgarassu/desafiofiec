@@ -10,17 +10,22 @@ from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
 start = time.time()
 ANO_ATUAL = 0
+ICOR = '\033[m'
+RED = '\033[31m'
+YEL = '\033[33m'
 
 def tempo():
+    """ Conta a duração total do processo de mineração de dados e populção do banco """
     end = time.time()
     total = (end - start)
     m, s = divmod(total, 60)
     h, m = divmod(m, 60)
-    print('Este processo demorou {:.1f} hora(s), {:.1f} minutos e {:.1f} segundos.'.format(h, m, s))
+    print('{}Este processo demorou {:.1f} hora(s), {:.1f} minutos e {:.1f} segundos.{}'.format(RED,h, m, s, ICOR))
     print('Obrigado por sua preferência XD !!!')
 
 
 def create_file_search_list():
+    """ Adciona a lista de arquivos a serem baixados os nomeclaturas relacionadas aos 3 últimos anos """
     global ANO_ATUAL
     currentDateTime = datetime.datetime.now()
     date = currentDateTime.date()
@@ -37,6 +42,7 @@ def create_file_search_list():
 
 
 def baixar_arquivo(url, endereco):
+    """ Resposável por escrever os arquivos de forma binária em CSV no local, equivale a download dos arquivos """
     # faz requisição ao servidor
     resposta = requests.get(url, verify=False)
     if resposta.status_code == requests.codes.OK:
@@ -48,6 +54,7 @@ def baixar_arquivo(url, endereco):
 
 
 def Scraping():
+    """ Faz a mineração dos links para download dos objetos alvos na pagína do governo federal """
     global start
     start = time.time()
     print(f"iniciando o processo em {time.ctime()}")
@@ -62,7 +69,7 @@ def Scraping():
     dados = soup.find_all('table', class_="plain")
     NAME_FILES = create_file_search_list()
     BASE_URL = defaultdict(list)
-    print("Minerando site do Comércio Exterior...")
+    print(f"{YEL}Minerando site do Comércio Exterior...{ICOR}")
 
     for linha in dados:
         links = linha.find_all('a')
@@ -73,7 +80,7 @@ def Scraping():
             if name_file in NAME_FILES:
                 BASE_URL[name_file] = href
 
-    print("Todos os links para download coletados...")
+    print(f"{RED}Todos os links para download coletados...{ICOR}")
     OUTPUT_DIR = 'BASE_DADOS'
 
     for file in BASE_URL:
@@ -86,6 +93,7 @@ def Scraping():
 
 
 def inserir_total(NAME_FILES):
+    """ Popula a tabelas com valores totais de importação e exportação """
     print("Ininicando a inserção de dados no banco de dados...")
     NAME_FILES = NAME_FILES
     LISTA_TOTAIS = []
@@ -123,13 +131,14 @@ def inserir_total(NAME_FILES):
 
 
 def inserir_products(NAME_FILES):
+    """ Popula a tabela products com informações sobre os produtos """
     NAME_FILES = NAME_FILES
     ARQUIVO_NCM = 'NCM'
     ARQUIVO_NCM_SH = 'NCM_SH'
     del(NAME_FILES[NAME_FILES.index(ARQUIVO_NCM)])
     del (NAME_FILES[NAME_FILES.index(ARQUIVO_NCM_SH)])
-    dados_NCM = open(f'./BASE_DADOS/{ARQUIVO_NCM}.csv').readlines()
-    dados_NCM_SH = open(f'./BASE_DADOS/{ARQUIVO_NCM_SH}.csv').readlines()
+    dados_NCM = open(f'./BASE_DADOS/{ARQUIVO_NCM}.csv', encoding="latin-1").readlines()
+    dados_NCM_SH = open(f'./BASE_DADOS/{ARQUIVO_NCM_SH}.csv', encoding="latin-1").readlines()
     contador = 0
     total_NCM = len(dados_NCM)
     total_NCM_SH = len(dados_NCM_SH)
@@ -181,11 +190,12 @@ def inserir_products(NAME_FILES):
                 print(f"Não foi possível inserir a linha {i}")
 
     print(f"Ao todos foram inseridas {contador} linhas de dados com sucesso!")
-    print("Preparando para próxima etapa, o processo está correndo muito bem... ")
+    print(f"{RED}Preparando para próxima etapa, o processo está correndo muito bem... {ICOR}")
     inserir_via(NAME_FILES)
 
 
 def inserir_via(NAME_FILES):
+    """ popula a tabela VIA com as inforamções sobre os tipos de vias """
     NAME_FILES = NAME_FILES
     ARQUIVO_VIA = 'VIA'
     del (NAME_FILES[NAME_FILES.index(ARQUIVO_VIA)])
@@ -214,12 +224,13 @@ def inserir_via(NAME_FILES):
             except:
                 print(f"Não foi possível inserir a linha {i}")
 
-    print("Ok, chegamos na parte mais demorada, boa sorte pro seu PC :p hahaha, relaxe!!")
+    print(f"{RED}Ok, chegamos na parte mais demorada, boa sorte pro seu PC :p hahaha, relaxe!!{ICOR}")
     print("Agora serão inseridos so arquivos com valor movimentado por tipo de movimentação, produtos, via e ano...")
     inserir_movimentacoes(NAME_FILES)
 
 
 def inserir_movimentacoes(NAME_FILES):
+    """ popula a tabela Valor_Movimentado com os 03 últimos anos de exportação e importação """
     NAME_FILES = NAME_FILES
 
     for ARQUIVO in NAME_FILES:
@@ -268,7 +279,7 @@ def inserir_movimentacoes(NAME_FILES):
         task = PeriodicTask.objects.create(name="Minerar dados COMEX", interval=interval, start_time=datetime.datetime.now(),
                                            task='auto_scraping.tasks.scraping_func',
                                            description="Atualização anual automática dos dados de Exp e Imp dos últimos 03 anos")
-        print(f"Agendado para {ANO_ATUAL+1}!")
+        print(f"Agendada proxima atualização para {ANO_ATUAL+1}!")
     except:
         print("Ops! O agendamento deverá acontecer manualmente pelo painel administrivo do django...")
 

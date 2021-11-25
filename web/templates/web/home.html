@@ -11,6 +11,38 @@
  }
 </style>
 
+<br><br><br><br>
+    <div class="row justify-content-center">
+        <div class="col-sm-2 sm-2" >
+            <div class="col-md-12">
+                <a href="{% url 'web:iniciar' %}">
+                    <img src="{% static 'img/comex.png' %}" class="img">
+               <br><button class="pure-button pure-button-primary  img">Iniciar Sistema</button></a>
+            </div>
+        </div>
+        <div class="col-sm-2 sm-2">
+            <div class="col-md-12" align="center">
+                <a href="{% url 'schema-swagger-ui' %}">
+                    <img src="{% static 'img/swagger.png' %}" class="img">
+                <br><button class="pure-button pure-button-primary  img">Gerenciamento API</button></a>
+            </div>
+        </div>
+                <div class="col-sm-2 sm-2" align="center">
+            <div class="col-md-12">
+                <a href="https://www.linkedin.com/in/diogo-santos-230b54175/" target="_blank">
+                    <img src="{% static 'img/linkedin.png' %}" class="img">
+                <br><button class="pure-button pure-button-primary  img">LinkedIn de Diogo</button></a>
+            </div>
+        </div>
+                <div class="col-sm-2 sm-2" align="center">
+            <div class="col-md-12" align="center">
+                <a href="https://github.com/DiogoIgarassu/desafiofiec" target="_blank">
+                    <img src="{% static 'img/outros.png' %}" class="img">
+                <br><button class="pure-button pure-button-primary  img">Outas Informações</button></a>
+            </div>
+        </div>
+    </div>
+<br>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br>
 {% endblock %}

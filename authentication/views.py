@@ -23,6 +23,7 @@ class CustomRedirect(HttpResponsePermanentRedirect):
 
 
 class RegisterView(generics.GenericAPIView):
+    """ Registro para novo usuários que desejam utilizar a API """
     serializer_class = RegisterSerializer
     renderer_classes = (UserRenderer,)
 
@@ -61,6 +62,7 @@ class RegisterView(generics.GenericAPIView):
 
 
 class VerifyEmail(views.APIView):
+    """ classe utlizada para veficar e ativar a conta do usuário """
     serializer_class = EmailVerificationSerializer
 
     token_param_config = openapi.Parameter(
@@ -86,6 +88,7 @@ class VerifyEmail(views.APIView):
 
 
 class LoginAPIView(generics.GenericAPIView):
+    """ classe utlizada para fazer login e fornecer o token de acesso ao usuário """
     serializer_class = LoginSerializer
 
     def post(self, request):
@@ -95,6 +98,7 @@ class LoginAPIView(generics.GenericAPIView):
 
 
 class RequestPasswordResetEmail(generics.GenericAPIView):
+    """ classe para recuperação de senha do usuário """
     serializer_class = ResetPasswordEmailRequestSerializer
 
     def post(self, request):
@@ -123,6 +127,7 @@ class RequestPasswordResetEmail(generics.GenericAPIView):
 
 
 class PasswordTokenCheckAPI(generics.GenericAPIView):
+    """ classe utilizada para chegar o token """
     serializer_class = SetNewPasswordSerializer
 
     def get(self, request, uidb64, token):
@@ -164,6 +169,7 @@ class PasswordTokenCheckAPI(generics.GenericAPIView):
 
 
 class SetNewPasswordAPIView(generics.GenericAPIView):
+    """ Classe utlizada pora cadastrar nova senha """
     serializer_class = SetNewPasswordSerializer
 
     def patch(self, request):
@@ -174,6 +180,7 @@ class SetNewPasswordAPIView(generics.GenericAPIView):
 
 
 class LogoutAPIView(generics.GenericAPIView):
+    """ classe utilizada para logout e invalidação do token """
     serializer_class = LogoutSerializer
 
     permission_classes = (permissions.IsAuthenticated,)
@@ -187,6 +194,7 @@ class LogoutAPIView(generics.GenericAPIView):
 
 
 class UserAPI(generics.RetrieveAPIView):
+    """ classe para receber dados do atual usuário logado """
     permission_classes = [permissions.IsAuthenticated, ]
     serializer_class = UserSerializer
 
@@ -195,6 +203,7 @@ class UserAPI(generics.RetrieveAPIView):
 
 
 class ChangePasswordAPIView(generics.GenericAPIView):
+    """ classe para mudança de senha do usuário """
     serializer_class = ChancePasswordSerializer
 
     def post(self, request):
