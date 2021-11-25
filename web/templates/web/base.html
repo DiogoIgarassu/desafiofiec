@@ -1,0 +1,67 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comércio Exterior do Brasil" />
+    <title>COMEX</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/pure-min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="icon" href="{% static 'img/brasil.ico' %}" type="image/x-icon">
+</head>
+<body>
+
+<script>
+function handleInput(e) {
+   var ss = e.target.selectionStart;
+   var se = e.target.selectionEnd;
+   e.target.value = e.target.value.toUpperCase();
+   e.target.selectionStart = ss;
+   e.target.selectionEnd = se;
+}
+</script>
+
+
+<div class="header">
+
+    <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+        <h1 class="pure-menu-heading">Comércio Exterior do Brasil</h1>
+
+        <ul>
+            {% if user.is_authenticated %}
+            <li class="pure-menu-selected"><a href="{% url 'web:home' %}">Início</a></li>
+            <li><a href="#">Listas</a></li>
+            <li><a href="{% url 'web:contact' %}">Contato</a></li>
+            <li><a href="">( {{ user }} ) </a></li>
+            <li><a href="#">Sair</a></li>
+            {% else %}
+            <li><a href="#">Entrar</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+<div class="content">
+
+
+    <br><br>
+    {% block content %} {% endblock %}
+
+  <div class="text-center p-3 text-white" style="background-color: #399433;">
+    © 2020 Copyright: SASI - Sistema desenvolvido pela Dexter Development
+    <br>
+    <a class="text-white" href="#">(by Diogo Igarassu)</a>
+  </div>
+
+
+</div>
+<script src="http://yui.yahooapis.com/3.12.0/build/yui/yui-min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

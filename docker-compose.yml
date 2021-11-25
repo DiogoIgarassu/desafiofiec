@@ -19,3 +19,26 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - redis
+  redis:
+    image: redis:alpine
+  celery:
+      build: .
+      command: celery -A Comex_Stat.celery worker -l info
+      volumes:
+        - ./DesafioFIEC/:/usr/src/app/
+      environment:
+        - DEBUG=1
+        - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+      depends_on:
+        - redis
+  celery-beat:
+      build: .
+      command: celery -A Comex_Stat beat -l info
+      volumes:
+        - ./DesafioFIEC/:/usr/src/app/
+      environment:
+        - DEBUG=1
+        - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+      depends_on:
+        - redis

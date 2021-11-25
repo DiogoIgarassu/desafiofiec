@@ -6,7 +6,7 @@ import datetime
 from collections import defaultdict
 from api.models import Total_Comex, Products_SH6, Products_NCM, Via, Valor_Movimentado
 import time
-
+from django_celery_beat.models import PeriodicTask, IntervalSchedule
 
 start = time.time()
 ANO_ATUAL = 0
@@ -260,6 +260,17 @@ def inserir_movimentacoes(NAME_FILES):
                         print(f'{porcent}% concluído')
                 except:
                     print(f"Não foi possível inserir a linha {i}")
+
+    print("Agendando a próxima atualização automática para daqui a 1 ano...")
+
+    try:
+        interval, create = IntervalSchedule.objects.get_or_create(every=365, period='days')
+        task = PeriodicTask.objects.create(name="Minerar dados COMEX", interval=interval, start_time=datetime.datetime.now(),
+                                           task='auto_scraping.tasks.scraping_func',
+                                           description="Atualização anual automática dos dados de Exp e Imp dos últimos 03 anos")
+        print(f"Agendado para {ANO_ATUAL+1}!")
+    except:
+        print("Ops! O agendamento deverá acontecer manualmente pelo painel administrivo do django...")
 
     print(f"Obrigado pela paciência, se você chegou aqui a operação foi um sucesso!!!")
     tempo()
