@@ -99,7 +99,7 @@ agora é possível filtrar por várias variáveis, por "exp" e "imp", por códig
 
 
 
-MELHORIAS
+#MELHORIAS
 São várias melhorias possíveis!
 A primeira seria a utização dos dados para gerarem gráficos(dashboards pernonalizados) e pertmitir diversos insights, uma das minhas libs favoritas para isto é a Bokeh
 Outra forma interessante é o agendamente e criação autómatica de relatórios, além a mineração diária por novos dados, estes relatórios 
