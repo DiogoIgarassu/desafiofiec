@@ -35,4 +35,39 @@ Após clicar em iniciar, você poderá observar no terminal do seu IDE todas as 
 Aguarde e você será direcionado para a página do Swagger, onde em /auth/register/ você fará seu cadastro
 na parte senha pode deixar "string", pois, será criada uma senha secreta e enviada para seu email.
 
-As te
+Algumas bibliotecas python foram fundamentais para este processo
+
+djangorestframework==3.12.4
+Usada pra criar a aplicação em formato de API com Serelização dos dados 
+
+djangorestframework-simplejwt==5.0.0
+Muito importante para autenticação por token
+
+drf-yasg==1.20.0
+Cria a pagina de gerenciamento da API
+
+beautifulsoup4==4.10.0
+Permite minerar sites
+
+celery==5.2.1
+Cria um sistema de filas de atividades servidor
+
+django-celery-beat==2.2.1
+facilita o agendamento de tarefas
+
+redis==4.0.2
+mini banco utilizado para guardar as atividades em fila de execução
+
+
+
+#COMO UTLIZAR VIA POSTMAN
+Vovê deve suar o seguinte link para criar conta de usuário
+http://127.0.0.1:8000/auth/register/
+{
+  "email": "email@email.com",
+  "username": "Fulano da Silva",
+  "password": "string"
+}
+
+
+http://127.0.0.1:8000/auth/login/
