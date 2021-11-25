@@ -15,7 +15,7 @@ Rode as migrações
 git clone https://github.com/DiogoIgarassu/desafiofiec.git
 cd desafiofiec
 python -m venv venv
-venv/bin/activate
+venv/scripts/activate
 pip install -r requirements.txt
 python manage.py migrate
 
