@@ -13,13 +13,14 @@ baixa dos dados, popula os bancos e forncesse os dados em forma de API Django Re
 <li> Instale as dependências</li>
 <li> Rode as migrações</li>
 </ol>
+
 ```
-[x] git clone https://github.com/DiogoIgarassu/desafiofiec.git
-[x] cd desafiofiec
-[x] python -m venv venv
-[x] venv/scripts/activate
-[x] pip install -r requirements.txt
-[x] python manage.py migrate
+[x] git clone https://github.com/DiogoIgarassu/desafiofiec.git<br>
+[x] cd desafiofiec<br>
+[x] python -m venv venv<br>
+[x] venv/scripts/activate<br>
+[x] pip install -r requirements.txt<br>
+[x] python manage.py migrate<br>
 ```
 
 <h3> Rodando com Docker </h3>
