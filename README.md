@@ -30,7 +30,7 @@ baixando os dados, populando os banco e fornecendo os dados em forma de API Djan
 
 
 <h4>Entre no link para iniciar o processo automatizado de busca e carregamento dos dados</h4>
-<br>http://localhost:8000/
+http://localhost:8000/
 
 <br> Haverá algumas opções na página inicial, você deve criar em "Iniciar Sistema" e na próxima página clicar no botão vermelho em "Iniciar Sistema"
 
@@ -100,7 +100,7 @@ você deve usar o seguinte link para login com método POST
 Agora você receberá confirmação de login de 02 tokens, 1 de refresh e outro de access
 <b>COPIE O TOKEN DE ACCESS</b>
 
-<b>Na guia Authorization, você deve escolher type: Bearer Token e colar o link que você copiou<b>
+<b>Na guia Authorization, você deve escolher type: Bearer Token e colar o link que você copiou</b>
 
 Pronto!!
 
