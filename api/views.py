@@ -3,6 +3,7 @@ from .models import Total_Comex, Products_SH6, Products_NCM, Valor_Movimentado
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 from rest_framework import generics, permissions
+from api.serializers import TotalSerializer, ProductsNCMSerializer, ValorMovimentadoSerializer
 
 
 class LazyEncoder(DjangoJSONEncoder):
@@ -15,6 +16,7 @@ class LazyEncoder(DjangoJSONEncoder):
 class Total(generics.RetrieveAPIView):
     """Filtra as informações do bando pelo ano passado no url"""
     permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = TotalSerializer
 
     def get(self, request, year=None, *args):
         resultado = []
@@ -46,6 +48,7 @@ class Total(generics.RetrieveAPIView):
 class Products(generics.RetrieveAPIView):
     """Filtra as informações do bando pelo ano passado no url"""
     permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = ProductsNCMSerializer
 
     def get(self, request, ncm=None, *args):
         resultado = []
@@ -84,6 +87,7 @@ class Products(generics.RetrieveAPIView):
 class Comex(generics.RetrieveAPIView):
     """Filtra as informações do bando pelo ano passado no url"""
     permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = ValorMovimentadoSerializer
 
     def get(self, request, movement=None, products=None, vias=None, year=None):
         resultado = []

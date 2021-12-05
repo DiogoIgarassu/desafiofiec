@@ -142,8 +142,8 @@ def inserir_products(NAME_FILES):
     contador = 0
     total_NCM = len(dados_NCM)
     total_NCM_SH = len(dados_NCM_SH)
-    #total_NCM = 1000 #APAGAR, APENAS PARA TESTE
-    #total_NCM_SH = 1000 #APAGAR, APENAS PARA TESTE
+    total_NCM = 1000 #APAGAR, APENAS PARA TESTE
+    total_NCM_SH = 1000 #APAGAR, APENAS PARA TESTE
 
     for i in range(total_NCM_SH):
         linha = dados_NCM_SH[i].strip().replace('"','')
@@ -237,7 +237,7 @@ def inserir_movimentacoes(NAME_FILES):
         dados_moviments = open(f'./BASE_DADOS/{ARQUIVO}.csv').readlines()
         contador = 0
         total_linhas = len(dados_moviments)
-        #total_linhas = 1000  #APAGAR ESTA LINHA NO PROJETO EM PRODUÇÃO
+        total_linhas = 1000  #APAGAR ESTA LINHA NO PROJETO EM PRODUÇÃO
 
         for i in range(total_linhas):
             linha = dados_moviments[i].strip().replace('"','')
