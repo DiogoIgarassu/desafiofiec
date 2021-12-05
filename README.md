@@ -10,36 +10,48 @@ baixa dos dados, popula os bancos e forncesse os dados em forma de API Django Re
 <h3>Clone esse repositório</h3>
 <ol>
 <li> Crie um ambiente virtualevn com python</li>
-<li> Instale as dependências</li>
-<li> Rode as migrações</li>
+<li> Ative o ambiente virtual</li>
+<li> Inicie o docker</li>
 </ol>
 
 ```
+[x] Abra o cmd, shell ou IDE na pasta de preferência para o projeto e use os comandos:
 [x] git clone https://github.com/DiogoIgarassu/desafiofiec.git
 [x] cd desafiofiec
 [x] python -m venv venv
 [x] venv/scripts/activate
-[x] pip install -r requirements.txt
-[x] python manage.py migrate
 ```
 
 <h3> Rodando com Docker </h3>
 <b>docker-compose up --build</b>
 
-<h3>Rode as migrações no container</h3>
-<b>docker container exec web python manage.py migrate</b>
+<h3>AVISO:</h3>
+<b>se passar mais de 10 minutos e não aparecer a frase "Starting development server at http://0.0.0.0:8000/", você deve pressionar  Ctrl + C e repetir o comando anterior</b>
 
-<h3>Crie um super usuário</h3>
-<b>docker container exec web python manage.py createsuperuser</b>
 
 <h4>Entre no link para iniciar o processo automatizado de carregado dos daods</h4>
 http://localhost:8000/
 
+<br> Haverá algumas opções na página inicial, você deve criar em "Iniciar Sistema" e na próxima página clicar no botão vermelho em "Iniciar Sistema"
+
+<br><b>AVISO:</b>
+<br>Você pode iniciar o sistema para testes (carregando parte dos arquivos CSV) ou comentar com # as linhas 145, 146 e 240 do arquivo /desafiofiec/auto_scraping/scraping.py para que seja carregadas todas as milhões de linhas de informações dos arqvuivos CSV no banco de dados.
+
 <br>Após clicar em iniciar, você poderá observar no terminal do seu IDE todas as etapas do processo acontecendo
-Aguarde e você será direcionado para a página do Swagger, onde em /auth/register/ você fará seu cadastro
-na parte senha pode deixar "string", pois, será criada uma senha secreta e enviada para seu email.
+Aguarde e você será direcionado para a página do Swagger, onde no ENDPOINT /auth/register/ você fará seu cadastro
+na parte senha pode deixar "string", pois, será criada uma senha secreta e enviada para seu email válido.
+
+<br><b>Observação:</b>
+<br>Caso não for direcionado automaticamente para o swagger você poderá voltar a página inicial e clicar em "Gerenciamento da API"
+
+<h3>Crie um super usuário para acessar o painel administrativo do Django e ver os dados do banco</h3>
+<b>docker-compose run web python manage.py createsuperuser</b>
+http://localhost:8000/admin
 
 <h3>Algumas bibliotecas python foram fundamentais para este processo</h3>
+
+<b>Django==3.2.9</b>
+<br>Um framework python completo que permite um ganho de produtividade por seu design pattern MVT(Model-View-Template) architecture.
 
 <b>djangorestframework==3.12.4</b>
 <br>Usada pra criar a aplicação em formato de API com Serelização dos dados 
@@ -64,7 +76,7 @@ na parte senha pode deixar "string", pois, será criada uma senha secreta e envi
 
 
 <h2>COMO UTLIZAR VIA POSTMAN</h2>
-Vovê deve suar o seguinte link para criar conta de usuário com método <b>POST</b>
+Vovê deve usar o seguinte link para criar conta de usuário com método <b>POST</b>
 <br>http://127.0.0.1:8000/auth/register/
 
 ```
@@ -112,4 +124,5 @@ Agora só utlizar as rotas com <b>Método GET</b> para obter as informações de
 <li>A primeira seria a utização dos dados para gerarem gráficos(dashboards pernonalizados) e pertmitir diversos insights, uma das minhas libs favoritas para isto é a Bokeh.</li>
 <li>Outra forma interessante é o agendamente e criação autómatica de relatórios, além a mineração diária por novos dados, estes relatórios 
 poderiam ajudar na tomada de decisões de grande empresas.</li>
+<li>User biblioteca pandas para transformar os arquivos CSV em matrizes dataframe e assim com menos linhas de progração manipular os dados e popular o banco.</li>
 </ol>
