@@ -19,7 +19,7 @@ baixando os dados, populando os banco e fornecendo os dados em forma de API Djan
 [x] git clone https://github.com/DiogoIgarassu/desafiofiec.git
 [x] cd desafiofiec
 [x] python -m venv venv
-[x] venv/scripts/activate
+[x] venv\scripts\activate
 ```
 
 <h3> Rodando com Docker </h3>
