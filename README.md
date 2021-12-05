@@ -15,12 +15,12 @@ baixa dos dados, popula os bancos e forncesse os dados em forma de API Django Re
 </ol>
 
 ```
-[x] git clone https://github.com/DiogoIgarassu/desafiofiec.git<br>
-[x] cd desafiofiec<br>
-[x] python -m venv venv<br>
-[x] venv/scripts/activate<br>
-[x] pip install -r requirements.txt<br>
-[x] python manage.py migrate<br>
+[x] git clone https://github.com/DiogoIgarassu/desafiofiec.git
+[x] cd desafiofiec
+[x] python -m venv venv
+[x] venv/scripts/activate
+[x] pip install -r requirements.txt
+[x] python manage.py migrate
 ```
 
 <h3> Rodando com Docker </h3>
@@ -33,7 +33,7 @@ baixa dos dados, popula os bancos e forncesse os dados em forma de API Django Re
 <b>docker container exec web python manage.py createsuperuser</b>
 
 <h4>Entre no link para iniciar o processo automatizado de carregado dos daods</h4>
-http://127.0.0.1:8000/
+http://localhost:8000/
 
 <br>Após clicar em iniciar, você poderá observar no terminal do seu IDE todas as etapas do processo acontecendo
 Aguarde e você será direcionado para a página do Swagger, onde em /auth/register/ você fará seu cadastro
