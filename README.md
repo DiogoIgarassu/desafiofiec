@@ -3,13 +3,13 @@ Repositório para desafio técnico para desenvolvedor Python da FIEC/CE
 
 Django - Docker - Celery - Redis - Beautifulsoup - API-Restful
 Aplicação que minera de forma automatizada dados dos últimos 3 anos do site do Comercio Exterior do Brasil, 
-baixa dos dados, popula os bancos e forncesse os dados em forma de API Django Restframework
+baixando os dados, populando os banco e fornecendo os dados em forma de API Django Restframework
 
 <h2>Como rodar o projeto?</h2>
 
 <h3>Clone esse repositório</h3>
 <ol>
-<li> Crie um ambiente virtualevn com python</li>
+<li> Crie um ambiente virtual com python</li>
 <li> Ative o ambiente virtual</li>
 <li> Inicie o docker</li>
 </ol>
@@ -29,16 +29,16 @@ baixa dos dados, popula os bancos e forncesse os dados em forma de API Django Re
 <b>se passar mais de 10 minutos e não aparecer a frase "Starting development server at http://0.0.0.0:8000/", você deve pressionar  Ctrl + C e repetir o comando anterior</b>
 
 
-<h4>Entre no link para iniciar o processo automatizado de carregado dos daods</h4>
-http://localhost:8000/
+<h4>Entre no link para iniciar o processo automatizado de busca e carregamento dos dados</h4>
+<br>http://localhost:8000/
 
 <br> Haverá algumas opções na página inicial, você deve criar em "Iniciar Sistema" e na próxima página clicar no botão vermelho em "Iniciar Sistema"
 
 <br><b>AVISO:</b>
-<br>Você pode iniciar o sistema para testes (carregando parte dos arquivos CSV) ou comentar com # as linhas 145, 146 e 240 do arquivo /desafiofiec/auto_scraping/scraping.py para que seja carregadas todas as milhões de linhas de informações dos arqvuivos CSV no banco de dados.
+<br>Você pode iniciar o sistema para testes (carregando parte dos arquivos CSV) ou comentar com # as linhas 145, 146 e 240 do arquivo /desafiofiec/auto_scraping/scraping.py para que seja carregadas todas as milhões de linhas de informações dos arquivos CSV no banco de dados.
 
-<br>Após clicar em iniciar, você poderá observar no terminal do seu IDE todas as etapas do processo acontecendo
-Aguarde e você será direcionado para a página do Swagger, onde no ENDPOINT /auth/register/ você fará seu cadastro
+<br>Após clicar em iniciar, você poderá observar no terminal do seu IDE todas as etapas do processo acontecendo.
+<br>Aguarde e você será direcionado para a página do Swagger, onde no ENDPOINT /auth/register/ você fará seu cadastro,
 na parte senha pode deixar "string", pois, será criada uma senha secreta e enviada para seu email válido.
 
 <br><b>Observação:</b>
@@ -46,7 +46,7 @@ na parte senha pode deixar "string", pois, será criada uma senha secreta e envi
 
 <h3>Crie um super usuário para acessar o painel administrativo do Django e ver os dados do banco</h3>
 <b>docker-compose run web python manage.py createsuperuser</b>
-http://localhost:8000/admin
+<br>acessar o link: http://localhost:8000/admin
 
 <h3>Algumas bibliotecas python foram fundamentais para este processo</h3>
 
@@ -57,19 +57,19 @@ http://localhost:8000/admin
 <br>Usada pra criar a aplicação em formato de API com Serelização dos dados 
 
 <b>djangorestframework-simplejwt==5.0.0</b>
-<br>Muito importante para autenticação por token
+<br>Usada para autenticação por token
 
 <b>drf-yasg==1.20.0</b>
-<br>Cria a pagina de gerenciamento da API
+<br>Cria a pagina swagger de gerenciamento da API
 
 <b>beautifulsoup4==4.10.0</b>
-<br>Permite minerar sites
+<br>Permite minerar sites navegando nas tags HTML
 
 <b>celery==5.2.1</b>
-<br>Cria um sistema de filas de atividades servidor
+<br>Cria um sistema de filas de atividades agendadas pelo servido
 
 <b>django-celery-beat==2.2.1</b>
-<br>facilita o agendamento de tarefas
+<br>facilita o agendamento de tarefas com funções pré definidas
 
 <b>redis==4.0.2</b>
 <br>mini banco utilizado para guardar as atividades em fila de execução
@@ -100,7 +100,7 @@ você deve usar o seguinte link para login com método POST
 Agora você receberá confirmação de login de 02 tokens, 1 de refresh e outro de access
 <b>COPIE O TOKEN DE ACCESS</b>
 
-Na guia Authorization, você deve escolher type: Bearer Token e colar o link que você copiou
+<b>Na guia Authorization, você deve escolher type: Bearer Token e colar o link que você copiou<b>
 
 Pronto!!
 
@@ -121,7 +121,7 @@ Agora só utlizar as rotas com <b>Método GET</b> para obter as informações de
 <h2>MELHORIAS</h2>
 <h3>São várias melhorias possíveis!</h3>
 <ol>
-<li>A primeira seria a utização dos dados para gerarem gráficos(dashboards pernonalizados) e pertmitir diversos insights, uma das minhas libs favoritas para isto é a Bokeh.</li>
+<li>A primeira seria a utilização dos dados para gerarem gráficos(dashboards pernonalizados) e pertmitir diversos insights, uma das minhas libs favoritas para isto é a Bokeh.</li>
 <li>Outra forma interessante é o agendamente e criação autómatica de relatórios, além a mineração diária por novos dados, estes relatórios 
 poderiam ajudar na tomada de decisões de grande empresas.</li>
 <li>User biblioteca pandas para transformar os arquivos CSV em matrizes dataframe e assim com menos linhas de progração manipular os dados e popular o banco.</li>
