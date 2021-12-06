@@ -32,7 +32,7 @@ baixando os dados, populando os banco e fornecendo os dados em forma de API Djan
 <h4>Entre no link para iniciar o processo automatizado de busca e carregamento dos dados</h4>
 http://localhost:8000/
 
-<br> Haverá algumas opções na página inicial, você deve criar em "Iniciar Sistema" e na próxima página clicar no botão vermelho em "Iniciar Sistema"
+<br> Haverá algumas opções na página inicial, você deve clicar em "Iniciar Sistema" e na próxima página clicar no botão vermelho em "Iniciar Sistema"
 
 <br><b>AVISO:</b>
 <br>Você pode iniciar o sistema para testes (carregando parte dos arquivos CSV) ou comentar com # as linhas 145, 146 e 240 do arquivo /desafiofiec/auto_scraping/scraping.py para que seja carregadas todas as milhões de linhas de informações dos arquivos CSV no banco de dados.
